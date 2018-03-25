@@ -1,0 +1,25 @@
+<div *ngIf="productDetail$ | async as productDetail">
+  <button (click)="backToProductList()" mat-button> < </button>
+
+  <header>
+    <h1>
+      {{productDetail.organizer}} concert - {{productDetail.date}}
+    </h1>
+  </header>
+
+  <main class="component-container">
+    <mat-card>
+      <mat-card-title>
+        <h2>{{productDetail.organizer}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <h3>
+          Date: {{productDetail.date}}
+        </h3>
+      </mat-card-subtitle>
+      <h3>Location: {{productDetail.location}}</h3>
+      <img src="{{urlBE + productDetail.image}}" alt="The Wall">
+    </mat-card>
+  </main>
+
+</div>

@@ -1,0 +1,38 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$drupal-app-primary: mat-palette($mat-yellow,  A700, 900, 700);
+$drupal-app-accent:  mat-palette($mat-grey,  900, 900, 900);
+
+// The warn palette is optional (defaults to red).
+$drupal-app-warn:    mat-palette($mat-deep-orange, A200);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$drupal-app-theme: mat-light-theme($drupal-app-primary, $drupal-app-accent, $drupal-app-warn);
+$drupal-app-dark-theme: mat-dark-theme($drupal-app-primary, $drupal-app-accent, $drupal-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($drupal-app-theme);
+
+
+.drupal-dark-theme {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($drupal-app-dark-theme);
+}
+
+.drupal-theme {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($drupal-app-theme);
+}

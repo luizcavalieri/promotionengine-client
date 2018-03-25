@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://headless-drupal.local:8089",
+    "secure": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": false
+  }
+}
+

@@ -1,0 +1,23 @@
+app-product-detail,
+app-product-list{
+
+  main{
+
+    &.component{
+
+      &-container{
+
+        a{
+          text-decoration: none !important;
+
+          h2, h3{
+            color: #000;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
