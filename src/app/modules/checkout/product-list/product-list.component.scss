@@ -10,24 +10,29 @@ app-product-list {
         flex-flow: wrap;
 
         a {
-          width: 31%;
+          flex-grow: 1;
+          min-width: 220px;
+          flex-basis: 30%;
 
           mat-card {
             display: flex;
             max-width: 860px;
             flex-direction: row;
             flex-wrap: wrap;
+            padding: 0;
             margin: {
               bottom: 5px;
               top: 5px;
               right: 5px;
               left: 5px;
-            }
+            };
 
 
             .product-info-container{
               display: flex;
               flex-direction: column;
+              width: 90%;
+              padding: 10px 5% 25px 5%;
 
               mat-card-title{
                 display: flex;
@@ -36,6 +41,10 @@ app-product-list {
 
                 h2, h3{
                   width: 100%;
+                }
+
+                h2{
+                  font-size: 30px;
                 }
 
               }

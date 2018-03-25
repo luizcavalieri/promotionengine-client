@@ -2,6 +2,9 @@
 
 
 @import 'assets/styles/custom-theme';
+@import 'assets/styles/variables';
+@import 'assets/styles/helpers';
+
 
 @import 'app/modules/checkout/product-detail/product-detail.component';
 @import 'app/modules/checkout/product-list/product-list.component';
