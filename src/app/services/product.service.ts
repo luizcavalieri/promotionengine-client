@@ -39,10 +39,11 @@ export class ProductService {
    *
    * */
   getProduct(id: string): Observable<Product | Product[]> {
-    this.productUrl = configs.API_BASE_URL + 'product/' + id;
+    this.productUrl = configs.API_BASE_URL + 'products/' + id;
 
     return this.http.get<Product[]>(this.productUrl)
-      .map(products => products.find(product => product.id === id))
+    // line commented as in-memory-database library does the job automatically on mock data.
+      // .map(products => products.find(product => product.id === id))
       .pipe(
         tap(_ =>
           this.log(

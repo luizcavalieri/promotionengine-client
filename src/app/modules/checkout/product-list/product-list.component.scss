@@ -5,27 +5,72 @@ app-product-list {
     &.component {
 
       &-container {
+        display: flex;
+        flex-direction: row;
+        flex-flow: wrap;
 
         a {
+          width: 31%;
 
           mat-card {
+            display: flex;
             max-width: 860px;
+            flex-direction: row;
+            flex-wrap: wrap;
             margin: {
-              bottom: 20px;
+              bottom: 5px;
+              top: 5px;
+              right: 5px;
+              left: 5px;
             }
 
-            img {
-              max-width: 400px;
-              width: 100%;
-              height: auto;
 
-              &.visible {
-                opacity: 1.0 ;
+            .product-info-container{
+              display: flex;
+              flex-direction: column;
+
+              mat-card-title{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                h2, h3{
+                  width: 100%;
+                }
+
               }
+
+              mat-card-title,
+              mat-card-subtitle{
+                width: 100%;
+              }
+
+              h2, h3, h4 {
+                margin: 5px 0;
+              }
+
+              .price{
+                font-size: 25px;
+              }
+
             }
 
-            h2, h3 {
+            .image-container{
+              width: 100%;
+              max-height: 200px;
+              overflow: hidden;
+              margin:{
+                left: 1%;
+              };
 
+              img {
+                width: 100%;
+                height: auto;
+
+                &.visible {
+                  opacity: 1.0 ;
+                }
+              }
             }
           }
         }

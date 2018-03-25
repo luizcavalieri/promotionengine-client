@@ -1,25 +1,62 @@
 <header *ngIf="!productDetail">
+
   <h1>
-    Product List 2018
+
+    Checkout
+
   </h1>
+
 </header>
 
 <main class="component-container" *ngIf="!productDetail">
+
   <a routerLink="/product/{{product.id}}" *ngFor="let product of products" >
+
     <mat-card  (click)="getProductDetail(product)">
-      <mat-card-title>
-        <h2>{{product.price}}</h2>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h3>
-          Date: {{product.description}}
+
+      <div class="image-container">
+
+        <img [appLazySrc]="urlBE + product.image"
+             lazySrcVisible="visible"
+             class=""
+             alt="{{ product.description}}"/>
+
+      </div>
+
+
+      <div class="product-info-container">
+
+        <mat-card-title>
+
+          <h2>
+
+            {{product.name}}
+
+          </h2>
+
+        </mat-card-title>
+
+        <mat-card-subtitle>
+
+          <h3>
+
+            {{product.description}}
+
+          </h3>
+
+        </mat-card-subtitle>
+
+        <h3 class="price">
+
+          AU${{product.price | number:'1.2-2' }}
+
         </h3>
-      </mat-card-subtitle>
-      <h3>Location: {{product.location}}</h3>
-      <!--<img src="{{urlBE + checkout.image}}" alt="The Wall">-->
-      <img [appLazySrc]="urlBE + product.image" lazySrcVisible="visible" class="" alt="{{ product.price }}"/>
+      </div>
+
     </mat-card>
+
   </a>
+
 </main>
 
 
