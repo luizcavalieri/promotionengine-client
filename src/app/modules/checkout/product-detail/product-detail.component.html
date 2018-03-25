@@ -3,22 +3,22 @@
 
   <header>
     <h1>
-      {{productDetail.organizer}} concert - {{productDetail.date}}
+      Products to Ckeckout
     </h1>
   </header>
 
   <main class="component-container">
     <mat-card>
       <mat-card-title>
-        <h2>{{productDetail.organizer}}</h2>
+        <h2>{{productDetail.name}}</h2>
       </mat-card-title>
       <mat-card-subtitle>
         <h3>
-          Date: {{productDetail.date}}
+          Date: {{productDetail.description}}
         </h3>
       </mat-card-subtitle>
-      <h3>Location: {{productDetail.location}}</h3>
-      <img src="{{urlBE + productDetail.image}}" alt="The Wall">
+      <h3>AU${{productDetail.price}}</h3>
+      <img src="{{urlBE + productDetail.image}}" alt="{{productDetail.name}}">
     </mat-card>
   </main>
 
