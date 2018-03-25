@@ -7,8 +7,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatButtonModule,
@@ -42,10 +44,16 @@ import { LazyModule } from './directives/lazy-load/lazy.module';
     AppProductModule,
     AppProductModule,
     LazyModule,
+    // Module imported for mocking data easier
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
+    InMemoryWebApiModule
   ],
   providers: [
     ProductService,
-    MessageService
+    MessageService,
+    InMemoryDataService
   ],
   bootstrap: [
     AppComponent

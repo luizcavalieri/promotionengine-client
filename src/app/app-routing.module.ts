@@ -5,7 +5,7 @@ import {ProductService} from './services/product.service';
 
 const indexRoute: Route = {
   path: '',
-  redirectTo: '/checkout-list',
+  redirectTo: '/product-list',
   pathMatch: 'full'
 };
 

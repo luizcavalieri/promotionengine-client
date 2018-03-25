@@ -20,6 +20,7 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     this.productUrl = configs.API_BASE_URL + 'products';
+    console.log(this.productUrl);
     return this.http.get<Product[]>(this.productUrl)
       .pipe(
         tap(
@@ -34,11 +35,11 @@ export class ProductService {
 
   /**
    *
-   * @param id: selected checkout id.
+   * @param id: selected product id.
    *
    * */
   getProduct(id: string): Observable<Product | Product[]> {
-    this.productUrl = configs.API_BASE_URL + 'products/' + id;
+    this.productUrl = configs.API_BASE_URL + 'product/' + id;
 
     return this.http.get<Product[]>(this.productUrl)
       .map(products => products.find(product => product.id === id))

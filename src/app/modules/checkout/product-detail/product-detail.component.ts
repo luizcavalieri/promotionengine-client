@@ -39,7 +39,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   backToProductList(): void {
-    this.router.navigate(['/checkout-list']);
+    this.router.navigate(['/product-list']);
   }
 
 }
