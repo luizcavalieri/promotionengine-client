@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {HttpClientModule} from '@angular/common/http';
@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   products: Product[];
   urlBE: string;
   productDetail: Product;
+  @Output() productToCheckout = new EventEmitter<Product>();
 
   constructor(
     private productService: ProductService
@@ -37,8 +38,8 @@ export class ProductListComponent implements OnInit, AfterContentInit {
     this.productDetail = product;
   }
 
-  backToList(): void {
-    this.productDetail = null;
+  addProductCheckout(product: Product) {
+    this.productToCheckout.emit(product);
   }
 
 }

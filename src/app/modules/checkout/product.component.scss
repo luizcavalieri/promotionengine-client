@@ -9,13 +9,18 @@ app-product{
 
   header{
     width: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+
   }
 
   app-product-list{
     flex-basis: 96%;
+    order: 2;
 
     @include tablet{
       flex-basis: 56%;
+      order: 1;
 
     }
 
@@ -23,9 +28,11 @@ app-product{
 
   app-product-detail{
     flex-basis: 96%;
+    order: 1;
 
     @include tablet{
       flex-basis: 36%;
+      order: 2;
     }
   }
 

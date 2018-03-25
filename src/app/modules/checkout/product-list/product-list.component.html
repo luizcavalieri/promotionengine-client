@@ -2,9 +2,10 @@
 
 <main class="component-container" *ngIf="!productDetail">
 
-  <a routerLink="/product/{{product.id}}" *ngFor="let product of products" >
+  <a *ngFor="let product of products" >
+  <!--<a *ngFor="let product of products" >-->
 
-    <mat-card  (click)="getProductDetail(product)">
+    <mat-card  (click)="addProductCheckout(product)">
 
       <div class="image-container">
 

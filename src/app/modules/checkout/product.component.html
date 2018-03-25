@@ -9,6 +9,10 @@
 
 </header>
 
-<app-product-list></app-product-list>
+<app-product-list (productToCheckout)="addProduct($event)">
 
-<app-product-detail></app-product-detail>
+</app-product-list>
+
+<app-product-detail [productListCheckout]="productBasket">
+
+</app-product-detail>

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
-
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,7 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatButtonModule,
-  MatCardModule
+  MatCardModule,
+  MatTableModule
 } from '@angular/material';
 
 import { ProductService } from './services/product.service';
@@ -34,6 +34,7 @@ import { LazyModule } from './directives/lazy-load/lazy.module';
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     ServiceWorkerModule
       .register(
         '/ngsw-worker.js',
