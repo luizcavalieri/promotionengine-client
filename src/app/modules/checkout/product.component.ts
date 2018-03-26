@@ -15,8 +15,7 @@ export class ProductComponent implements OnInit {
     this.productBasket = [];
   }
 
-  ngOnInit() {
-  }
+  ngOnInit(): void { }
 
   addProduct(productToCheckout: Product) {
     this.productBasket.push(productToCheckout);

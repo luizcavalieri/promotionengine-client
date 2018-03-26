@@ -1,23 +1,23 @@
 app-product-detail{
 
-  main{
+  aside{
 
     &.component{
 
       &-container{
-        display: flex;
-        width: 100%;
-        height: auto;
-        margin:{
-          top: 20px;
-          bottom: 20px;
-        }
 
-        a{
+        mat-card{
 
+          mat-table{
 
-          h2, h3{
+            mat-cell{
+              padding: 5px;
+            }
+          }
 
+          mat-card-footer{
+            background: #f4f4f4;
+            padding: 20px;
           }
         }
       }

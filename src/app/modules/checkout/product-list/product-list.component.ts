@@ -3,6 +3,7 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {HttpClientModule} from '@angular/common/http';
 import {configs} from '../../../../util';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-product-list',

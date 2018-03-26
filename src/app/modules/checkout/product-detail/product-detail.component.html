@@ -1,29 +1,27 @@
 
-<div *ngIf="productListCheckout">
-  WE have a product in the basket.
-
-  <div *ngFor="let productItem of productListCheckout">
-
-    {{productItem.name}}
-
-  </div>
+<aside class="component-container" *ngIf="productListCheckout">
 
   <mat-card>
 
-
     <mat-card-header>
 
-      <mat-card-title>Title</mat-card-title>
+      <mat-card-title>
 
-      <mat-card-subtitle>Subtitle</mat-card-subtitle>
+        Checkout Products
+
+      </mat-card-title>
+
+      <mat-card-subtitle>
+
+
+      </mat-card-subtitle>
 
     </mat-card-header>
 
-    <img matCardImage src="Card wide image source">
 
     <mat-card-content>
 
-      <mat-table #table [dataSource]="productListCheckout">
+      <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="name">
 
@@ -42,6 +40,13 @@
 
         </ng-container>
 
+        <ng-container matColumnDef="quantity">
+
+          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+
+          <mat-cell *matCellDef="let productItem" > {{productItem.price | number:'1.2-2' }} </mat-cell>
+
+        </ng-container>
 
         <ng-container matColumnDef="price">
 
@@ -61,7 +66,7 @@
 
     <mat-card-actions align="start">
 
-      <button mat-button (click)="onAction1">Action1</button>
+      <!--<button mat-button (click)="onAction1">Action1</button>-->
 
     </mat-card-actions>
 
@@ -73,32 +78,4 @@
 
   </mat-card>
 
-</div>
-
-<div *ngIf="productDetail$ | async as productDetail">
-
-  <button (click)="backToProductList()" mat-button> < </button>
-
-  <section class="component-container">
-
-    <div class="header-section">
-      <h2>
-        Products Ckeckout List
-      </h2>
-    </div>
-
-    <mat-card>
-      <mat-card-title>
-        <h2>{{productDetail.name}}</h2>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h3>
-          Date: {{productDetail.description}}
-        </h3>
-      </mat-card-subtitle>
-      <h3>AU${{productDetail.price}}</h3>
-      <img src="{{urlBE + productDetail.image}}" alt="{{productDetail.name}}">
-    </mat-card>
-  </section>
-
-</div>
+</aside>
