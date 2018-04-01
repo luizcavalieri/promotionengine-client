@@ -35,7 +35,6 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   }
 
   getProductDetail(product): void {
-    console.log(product);
     this.productDetail = product;
   }
 

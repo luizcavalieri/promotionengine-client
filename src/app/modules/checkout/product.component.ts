@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   addProduct(productToCheckout: Product) {
     this.productBasket.push(productToCheckout);
     this.productAdded.emit(this.productBasket);
-    console.log(this.productBasket);
+    // console.log(this.productBasket);
   }
 
 }
