@@ -11,12 +11,16 @@ import {MatTableDataSource} from '@angular/material';
              styleUrls: ['./product-detail.component.scss']
            })
 export class ProductDetailComponent implements OnInit, DoCheck {
+  @Input() productListCheckout: Product[];
   urlBE: string;
   displayedColumns = ['name', 'description', 'quantity', 'price'];
-  @Input() productListCheckout: Product[];
   productArrayCount: Product[] = [];
   dataSource = new MatTableDataSource(this.productArrayCount);
   differ: any;
+  grandTotal: number = 0;
+  discount: number = 0;
+  total: number = 0;
+  quantity: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +37,7 @@ export class ProductDetailComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.addProductToCheckout();
+    this.calculateTotals();
   }
 
   addProductToCheckout(): void {
@@ -59,5 +64,15 @@ export class ProductDetailComponent implements OnInit, DoCheck {
       previousItem = item;
     }
     this.dataSource = new MatTableDataSource(this.productArrayCount);
+  }
+
+
+  calculateTotals(): void {
+    this.total = 0;
+    this.quantity = 0;
+    for (const item of this.productArrayCount) {
+     this.total = this.total + (item.count * item.price);
+     this.quantity = this.quantity + item.count;
+    }
   }
 }

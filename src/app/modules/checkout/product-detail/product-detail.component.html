@@ -72,7 +72,41 @@
 
     <mat-card-footer>
 
-      Footer
+      <section class="">
+
+        <div class="">
+            Total
+          <p>
+            Discount
+          </p>
+          <p>
+            <strong>
+              Grand Total
+            </strong>
+          </p>
+        </div>
+
+        <div class="">
+
+        </div>
+
+        <div class="">
+          {{ quantity }}
+        </div>
+
+        <div class="">
+          AU$ {{ total | number:'1.2-2' }}
+          <p>
+            AU$ {{ discount | number:'1.2-2'}}
+          </p>
+          <p>
+            <strong>
+              AU$ {{ total - discount | number:'1.2-2' }}
+            </strong>
+          </p>
+        </div>
+
+      </section>
 
     </mat-card-footer>
 
