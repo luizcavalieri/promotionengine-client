@@ -18,7 +18,7 @@ app-product{
     flex-basis: 96%;
     order: 2;
 
-    @include tablet{
+    @include desktop{
       flex-basis: 56%;
       order: 1;
 
@@ -30,7 +30,7 @@ app-product{
     flex-basis: 96%;
     order: 1;
 
-    @include tablet{
+    @include desktop{
       flex-basis: 36%;
       order: 2;
     }
