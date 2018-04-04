@@ -1,19 +1,68 @@
-app-product-detail,
-app-product-list{
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/helpers";
 
-  main{
 
-    &.component{
+app-product{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-      &-container{
+  header{
+    width: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
 
-        a{
-          text-decoration: none !important;
+  }
 
-          h2, h3{
-            color: #000;
-            &:hover{
-              text-decoration: underline;
+  app-product-list{
+    flex-basis: 96%;
+    order: 2;
+
+    @include desktop{
+      flex-basis: 56%;
+      order: 1;
+
+    }
+
+  }
+
+  app-product-detail{
+    flex-basis: 96%;
+    order: 1;
+
+    @include desktop{
+      flex-basis: 36%;
+      order: 2;
+    }
+  }
+
+  app-product-detail,
+  app-product-list{
+    min-width: 310px;
+    margin-right: 2%;
+    margin-left: 2%;
+
+
+    header{
+      width: 100%;
+      display: block;
+
+    }
+
+    main{
+
+      &.component{
+
+        &-container{
+
+          a{
+            text-decoration: none !important;
+
+            h2, h3{
+              color: #000;
+              &:hover{
+                text-decoration: underline;
+              }
             }
           }
         }

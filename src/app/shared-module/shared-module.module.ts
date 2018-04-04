@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 // Extra Modules.
 import {
   MatButtonModule,
-  MatCardModule
-} from '@angular/material';
+  MatCardModule, MatTableModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LazyModule} from '../directives/lazy-load/lazy.module';
 
@@ -16,12 +16,14 @@ import {LazyModule} from '../directives/lazy-load/lazy.module';
     CommonModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     BrowserAnimationsModule,
     LazyModule
   ],
   exports: [
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     BrowserAnimationsModule,
     LazyModule
   ],

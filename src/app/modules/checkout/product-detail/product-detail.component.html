@@ -1,25 +1,115 @@
-<div *ngIf="productDetail$ | async as productDetail">
-  <button (click)="backToProductList()" mat-button> < </button>
 
-  <header>
-    <h1>
-      {{productDetail.organizer}} concert - {{productDetail.date}}
-    </h1>
-  </header>
+<aside class="component-container" *ngIf="productListCheckout">
 
-  <main class="component-container">
-    <mat-card>
+  <mat-card>
+
+    <mat-card-header>
+
       <mat-card-title>
-        <h2>{{productDetail.organizer}}</h2>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h3>
-          Date: {{productDetail.date}}
-        </h3>
-      </mat-card-subtitle>
-      <h3>Location: {{productDetail.location}}</h3>
-      <img src="{{urlBE + productDetail.image}}" alt="The Wall">
-    </mat-card>
-  </main>
 
-</div>
+        Checkout Products
+
+      </mat-card-title>
+
+      <mat-card-subtitle>
+
+
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+
+    <mat-card-content>
+
+      <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+
+          <mat-cell *matCellDef="let productItem"> {{productItem.name}} </mat-cell>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="description">
+
+          <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+
+          <mat-cell *matCellDef="let productItem"> {{productItem.description}} </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+
+          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+
+          <mat-cell *matCellDef="let productItem"> {{productItem.count }} </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+
+          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+
+          <mat-cell *matCellDef="let productItem"> {{productItem.price | number:'1.2-2' }} </mat-cell>
+
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      </mat-table>
+
+    </mat-card-content>
+
+    <mat-card-actions align="start">
+
+      <!--<button mat-button (click)="onAction1">Action1</button>-->
+
+    </mat-card-actions>
+
+    <mat-card-footer>
+
+      <section class="">
+
+        <div class="">
+            Total
+          <p>
+            Discount
+          </p>
+          <p>
+            <strong>
+              Grand Total
+            </strong>
+          </p>
+        </div>
+
+        <div class="">
+
+        </div>
+
+        <div class="">
+          {{ quantity }}
+        </div>
+
+        <div class="">
+          AU$ {{ total | number:'1.2-2' }}
+          <p>
+            AU$ {{ discount | number:'1.2-2'}}
+          </p>
+          <p>
+            <strong>
+              AU$ {{ total - discount | number:'1.2-2' }}
+            </strong>
+          </p>
+        </div>
+
+      </section>
+
+    </mat-card-footer>
+
+  </mat-card>
+
+</aside>
