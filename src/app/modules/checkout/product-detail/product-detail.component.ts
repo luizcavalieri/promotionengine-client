@@ -49,7 +49,7 @@ export class ProductDetailComponent implements OnInit, DoCheck {
             return a.id - b.id;
           });
 
-    for (const item of productArrSorted) {
+    productArrSorted.map(item => {
       if (previousItem !== undefined) {
         if (item.id === previousItem.id) {
           this.productArrayCount.pop();
@@ -62,10 +62,9 @@ export class ProductDetailComponent implements OnInit, DoCheck {
       }
       this.productArrayCount.push(item);
       previousItem = item;
-    }
+    });
     this.dataSource = new MatTableDataSource(this.productArrayCount);
   }
-
 
   calculateTotals(): void {
     this.total = 0;
