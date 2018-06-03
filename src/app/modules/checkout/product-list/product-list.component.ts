@@ -4,6 +4,7 @@ import {Product} from '../../../models/product';
 import {HttpClientModule} from '@angular/common/http';
 import {configs} from '../../../../util';
 import {Observable} from "rxjs/Observable";
+import {PromotionService} from '../../../services/promotion.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +18,8 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   @Output() productToCheckout = new EventEmitter<Product>();
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private promotionService: PromotionService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class ProductListComponent implements OnInit, AfterContentInit {
 
   addProductCheckout(product: Product) {
     this.productToCheckout.emit(product);
+    this.promotionService.getPromotionToken().subscribe(token => console.log(token));
   }
 
 }

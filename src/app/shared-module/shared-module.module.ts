@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule, MatTableModule
-} from "@angular/material";
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LazyModule} from '../directives/lazy-load/lazy.module';
 

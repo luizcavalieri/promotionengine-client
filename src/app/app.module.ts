@@ -18,10 +18,12 @@ import {
 } from '@angular/material';
 
 import { ProductService } from './services/product.service';
+import { PromotionService } from './services/promotion.service';
 import { MessageService } from './services/message.service';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { AppProductModule } from './modules/checkout/product.module';
 import { LazyModule } from './directives/lazy-load/lazy.module';
+import {ServiceUtils} from './services/service-utils';
 
 @NgModule({
   declarations: [
@@ -44,17 +46,18 @@ import { LazyModule } from './directives/lazy-load/lazy.module';
     SharedModuleModule,
     AppProductModule,
     AppProductModule,
-    LazyModule,
-    // Module imported for mocking data easier
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    InMemoryWebApiModule
+    LazyModule,    // Module imported for mocking data easier
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //     InMemoryDataService, { dataEncapsulation: false }
+    // ),
+    // InMemoryWebApiModule
   ],
   providers: [
     ProductService,
     MessageService,
-    InMemoryDataService
+    InMemoryDataService,
+    PromotionService,
+    ServiceUtils
   ],
   bootstrap: [
     AppComponent
