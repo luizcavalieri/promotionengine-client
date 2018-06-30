@@ -93,7 +93,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.productUrl)
       .pipe(
         tap(
-          products => this.serviceUtils.log(`fetched products`)),
+          productList => this.serviceUtils.log(`fetched products ${productList}`)),
         catchError(
           this.serviceUtils.handleError(
             'getProducts',

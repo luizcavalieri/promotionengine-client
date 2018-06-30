@@ -53,12 +53,12 @@ export class ProductDetailComponent implements OnInit, DoCheck {
       if (previousItem !== undefined) {
         if (item.id === previousItem.id) {
           this.productArrayCount.pop();
-          item.count++;
+          item.quantity++;
         } else {
-          item.count = 1;
+          item.quantity = 1;
         }
       } else {
-        item.count = 1;
+        item.quantity = 1;
       }
       this.productArrayCount.push(item);
       previousItem = item;
@@ -70,8 +70,8 @@ export class ProductDetailComponent implements OnInit, DoCheck {
     this.total = 0;
     this.quantity = 0;
     for (const item of this.productArrayCount) {
-     this.total = this.total + (item.count * item.price);
-     this.quantity = this.quantity + item.count;
+     this.total = this.total + (item.quantity * item.price);
+     this.quantity = this.quantity + item.quantity;
     }
   }
 }

@@ -12,6 +12,14 @@ This is a project to proof concept of a Promotion Engine and was generated with 
 - Using Angular Cli: Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 - Using NPM: Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+
+## Mocked API Server
+
+- Install "json-server" globally with either npm or yarn
+- Run the below command from terminal within "/api" directory
+  - json-server --watch product.json --port 8085
+
+
 ## Running unit tests
 
 - Using Angular Cli: Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).

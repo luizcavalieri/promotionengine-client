@@ -7,9 +7,22 @@ import {HttpHeaders} from '@angular/common/http';
 export const httpOptionsJSON = {
   headers: new HttpHeaders(
     {
-      'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token'
+      'Content-Type': 'application/json'
     })
+};
+
+export const httpOptionsText = {
+  headers: new HttpHeaders(
+    {
+      responseType: 'text/plain; charset=utf-8'
+    })
+};
+
+export const httpPostOptionsText = {
+  headers: new HttpHeaders({}),
+  reportProgress: false,
+  withCredentials: false,
+  responseType: 'text'
 };
 
 export const httpOptionsOCTEL = {
