@@ -26,14 +26,15 @@ export class ProductListComponent implements OnInit, AfterContentInit {
     this.getProducts();
     this.urlBE = configs.BE_BASE_URL;
     // getting promtion engine token.
-    this.promotionService.getPromotionToken()
+    this.promotionService.postPromotionToken()
         .subscribe(token => {
           console.log('promotion token', token);
           this.promotionToken = token;
         });
   }
 
-  ngAfterContentInit() { }
+  ngAfterContentInit() {
+  }
 
   getProducts(): void {
     this.productService.getProducts()
@@ -47,14 +48,17 @@ export class ProductListComponent implements OnInit, AfterContentInit {
 
   addProductCheckout(product: Product) {
     this.productToCheckout.emit(product);
+    console.log('this.promotionToken', this.promotionToken);
     this.promotionService.putPromotion(this.promotionToken)
         .subscribe(
-          promotion => console.log('Promotion PUT')
-        );
-
-    this.promotionService.getPromotion()
-        .subscribe(
-          promotion => console.log('Promotion Obj', promotion)
+          promotion => console.log('Promotion PUT'),
+          (err) => console.error(err),
+          () => {
+            this.promotionService.getPromotion(this.promotionToken)
+                .subscribe(
+                  promotion => console.log('Promotion Obj', promotion)
+                );
+          }
         );
   }
 

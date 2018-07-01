@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
+import {Observable, of} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {configs} from '../../util';
 import { catchError, map, tap } from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {ServiceUtils} from './service-utils';
 
-import 'rxjs/add/operator/map';
+
 
 const products = [
   {

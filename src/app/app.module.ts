@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
+// import { InMemoryDataService } from './services/in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -55,7 +53,6 @@ import {ServiceUtils} from './services/service-utils';
   providers: [
     ProductService,
     MessageService,
-    InMemoryDataService,
     PromotionService,
     ServiceUtils
   ],

@@ -1,5 +1,4 @@
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
+import {Observable, of} from 'rxjs';
 import {MessageService} from './message.service';
 import {Injectable} from '@angular/core';
 import {HttpHeaders} from '@angular/common/http';
@@ -11,19 +10,17 @@ export const httpOptionsJSON = {
     })
 };
 
-export const httpOptionsText = {
-  headers: new HttpHeaders(
-    {
-      responseType: 'text/plain; charset=utf-8'
-    })
+const header = new HttpHeaders({'Content-Type': 'text/plain'});
+export const httpHeaderText = {
+  headers: header,
 };
 
-export const httpPostOptionsText = {
-  headers: new HttpHeaders({}),
-  reportProgress: false,
-  withCredentials: false,
+export const httpOptionsText = {
+  headers: header,
   responseType: 'text'
 };
+
+
 
 export const httpOptionsOCTEL = {
   headers: new HttpHeaders(
