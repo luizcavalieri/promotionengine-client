@@ -11,6 +11,7 @@ export const httpOptionsJSON = {
 };
 
 const header = new HttpHeaders({'Content-Type': 'text/plain'});
+
 export const httpHeaderText = {
   headers: header,
 };
@@ -20,8 +21,6 @@ export const httpOptionsText = {
   responseType: 'text'
 };
 
-
-
 export const httpOptionsOCTEL = {
   headers: new HttpHeaders(
     {
@@ -29,19 +28,40 @@ export const httpOptionsOCTEL = {
     })
 };
 
-
 @Injectable()
 export class ServiceUtils {
   httpOptions: any;
+  httpOptionsText: Object;
+  httpHeaderText: Object;
+  httpOptionsOCTEL: Object;
+  httpOptionsJSON: Object;
 
   constructor(
-    private messageService: MessageService,
-  ) {
+    private messageService: MessageService) {
     this.httpOptions = {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': 'my-auth-token'
+        })
+    };
+    this.httpOptionsText = {
+      headers: header,
+      responseType: 'text'
+    };
+    this.httpHeaderText = {
+      headers: header
+    };
+    this.httpOptionsOCTEL = {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/octet-stream'
+        })
+    };
+    this.httpOptionsJSON = {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json'
         })
     };
   }
@@ -57,7 +77,7 @@ export class ServiceUtils {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  public handleError<T> (operation = 'operation', result?: T) {
+  public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
