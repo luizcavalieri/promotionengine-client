@@ -67,24 +67,25 @@ export class ServiceUtils {
   }
 
   /** Log a ProductService message with the MessageService */
-  public log(message: string) {
-    this.messageService.add('ProductServices: ' + message);
+  public log(service: string, message: string) {
+    this.messageService.add(service + ': ' + message);
   }
 
   /**
    * Handle Http operation that failed.
    * Let the app continue.
+   * @param service - name of the service where the operation failed
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  public handleError<T>(operation = 'operation', result?: T) {
+  public handleError<T>(service: string, operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(service, `${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

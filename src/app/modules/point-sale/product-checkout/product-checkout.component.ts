@@ -4,14 +4,17 @@ import {configs} from '../../../../util';
 import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
+import {PromotionService} from '../../../services/promotion.service';
+import {Promotion} from '../../../models/promotion';
 
 @Component({
-             selector: 'app-product-detail',
-             templateUrl: './product-detail.component.html',
-             styleUrls: ['./product-detail.component.scss']
+             selector: 'app-product-checkout',
+             templateUrl: './product-checkout.component.html',
+             styleUrls: ['./product-checkout.component.scss']
            })
-export class ProductDetailComponent implements OnInit, DoCheck {
+export class ProductCheckoutComponent implements OnInit, DoCheck {
   @Input() productListCheckout: Product[];
+  @Input() productToCheckout: Product;
   urlBE: string;
   displayedColumns = ['name', 'description', 'quantity', 'price'];
   productArrayCount: Product[] = [];
@@ -21,11 +24,14 @@ export class ProductDetailComponent implements OnInit, DoCheck {
   discount: number = 0;
   total: number = 0;
   quantity: number = 0;
+  promotionToken: String;
+  promotionObj: Promotion;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
+    public promotionService: PromotionService,
     private differs: IterableDiffers) {
     this.differ = differs.find([]).create(null);
   }
@@ -37,7 +43,7 @@ export class ProductDetailComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.addProductToCheckout();
-    this.calculateTotals();
+    this.getTotals();
   }
 
   addProductToCheckout(): void {
@@ -66,7 +72,7 @@ export class ProductDetailComponent implements OnInit, DoCheck {
     this.dataSource = new MatTableDataSource(this.productArrayCount);
   }
 
-  calculateTotals(): void {
+  getTotals(): void {
     this.total = 0;
     this.quantity = 0;
     for (const item of this.productArrayCount) {
@@ -74,4 +80,6 @@ export class ProductDetailComponent implements OnInit, DoCheck {
      this.quantity = this.quantity + item.quantity;
     }
   }
+
+
 }

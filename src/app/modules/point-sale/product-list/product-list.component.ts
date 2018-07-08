@@ -3,6 +3,7 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {configs} from '../../../../util';
 import {PromotionService} from '../../../services/promotion.service';
+import {Promotion} from '../../../models/promotion';
 
 @Component({
              selector: 'app-product-list',
@@ -14,7 +15,9 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   urlBE: string;
   productDetail: Product;
   promotionToken: String;
+  promotionObj: Promotion [];
   @Output() productToCheckout = new EventEmitter<Product>();
+  @Output() promotionToCheckout = new EventEmitter<Promotion[]>();
 
   constructor(
     private productService: ProductService,
@@ -48,18 +51,27 @@ export class ProductListComponent implements OnInit, AfterContentInit {
 
   addProductCheckout(product: Product) {
     this.productToCheckout.emit(product);
+    // adding promotion to point-sale
+    this.getPromotions(product);
+  }
+
+  getPromotions(product: Product) {
     console.log('this.promotionToken', this.promotionToken);
-    this.promotionService.putPromotion(this.promotionToken)
-        .subscribe(
-          promotion => console.log('Promotion PUT'),
-          (err) => console.error(err),
-          () => {
-            this.promotionService.getPromotion(this.promotionToken)
-                .subscribe(
-                  promotion => console.log('Promotion Obj', promotion)
-                );
-          }
-        );
+    return this.promotionService.putPromotion(this.promotionToken, product)
+               .subscribe(
+                 promotion => console.log('Promotion PUT', product),
+                 (err) => console.error(err),
+                 () => {
+                   this.promotionService.getPromotion(this.promotionToken)
+                       .subscribe(
+                         promotion => {
+                           if (promotion.length > 0) {
+                             this.promotionToCheckout.emit(promotion);
+                           }
+                         }
+                       );
+                 }
+               );
   }
 
 }

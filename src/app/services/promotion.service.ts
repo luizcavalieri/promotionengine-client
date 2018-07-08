@@ -10,11 +10,11 @@ import {Observable} from 'rxjs';
 
 
 const promotionUrl = configs.PROMOTION_BASE_API;
+const SERVICE = 'PromotionService';
 
 // MOCK CONSTANTS
 const STORE_ID = '22';
 const POS_ID = '11';
-const TOKEN_PROMOTION = '8900649c-e710-4076-973c-0d46f57def80';
 const bodyBeerNuts = {
     'quantity': 1,
     'item': {
@@ -37,8 +37,6 @@ const bodyShitPapers = {
     'type': 'UNIT'
   }
 };
-
-
 const bodyPalmeiras = {
   'quantity': 1,
   'item':
@@ -51,7 +49,6 @@ const bodyPalmeiras = {
       'type': 'UNIT'
     }
 };
-
 
 @Injectable()
 export class PromotionService {
@@ -71,45 +68,50 @@ export class PromotionService {
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
+                         SERVICE,
                          `fetched postPromotionToken ${_}`
                        )
                  ),
                  catchError(
                    this.serviceUtils.handleError<String>(
+                     SERVICE,
                      `postPromotionToken`
                    )
                  )
                );
   }
 
-  putPromotion(promotionToken): Observable<Promotion> {
+  putPromotion(promotionToken, product): Observable<Promotion> {
     this.apiUrl = promotionUrl + promotionToken;
     return this.http.put<Promotion>(this.apiUrl, bodyBeerNuts, this.serviceUtils.httpOptionsJSON)
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
+                         SERVICE,
                          `fetched putPromotion ${_}`
                        )
                  ),
                  catchError(
                    this.serviceUtils.handleError<Promotion>(
+                     SERVICE,
                      `putPromotion`
                    )
                  )
                );
   }
 
-  getPromotion(promotionToken): Observable<Promotion | String> {
+  getPromotion(promotionToken): Observable<Promotion[]> {
     this.apiUrl = promotionUrl + promotionToken;
-    return this.http.get<Promotion | String>(this.apiUrl)
+    return this.http.get<Promotion[]>(this.apiUrl)
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
-                         `fetched getPromotion ${_}`
+                         SERVICE, `fetched getPromotion ${_}`
                        )
                  ),
                  catchError(
-                   this.serviceUtils.handleError<String>(
+                   this.serviceUtils.handleError<Promotion[]>(
+                     SERVICE,
                      `getPromotion`
                    )
                  )

@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {ServiceUtils} from './service-utils';
 
-
+const SERVICE = 'ProductService';
 
 const products = [
   {
@@ -92,9 +92,13 @@ export class ProductService {
     return this.http.get<Product[]>(this.productUrl)
       .pipe(
         tap(
-          productList => this.serviceUtils.log(`fetched products ${productList}`)),
+          productList => this.serviceUtils.log(
+            SERVICE,
+            `fetched products ${productList}`
+          )),
         catchError(
           this.serviceUtils.handleError(
+            SERVICE,
             'getProducts',
             []
           ))
@@ -115,11 +119,13 @@ export class ProductService {
       .pipe(
         tap(_ =>
           this.serviceUtils.log(
+            SERVICE,
             `fetched product id=${id}`
           )
         ),
         catchError(
           this.serviceUtils.handleError<Product[]>(
+            SERVICE,
             `getProduct id=${id}`
           )
         )

@@ -2,7 +2,7 @@ import {Product} from './product';
 
 export class ProductCheckout extends Product {
   quantity: number;
-  barCode: string;
+  barcode: string;
   action: string;
   type: string;
 }

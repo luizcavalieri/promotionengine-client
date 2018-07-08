@@ -1,5 +1,6 @@
 import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
 import {Product} from '../../models/product';
+import {Promotion} from '../../models/promotion';
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,10 @@ import {Product} from '../../models/product';
 })
 export class ProductComponent implements OnInit {
   @Input() productToCheckout: Product;
-  @Output() productAdded = new EventEmitter<Product[]>() ;
+  @Input() promotionToCheckout: Promotion[];
+  @Output() productListAdded = new EventEmitter<Product[]>() ;
+  @Output() productAdded = new EventEmitter<Product>() ;
+  @Output() promotions = new EventEmitter<Promotion[]>() ;
   productBasket: Product[];
 
   constructor() {
@@ -19,8 +23,12 @@ export class ProductComponent implements OnInit {
 
   addProduct(productToCheckout: Product) {
     this.productBasket.push(productToCheckout);
-    this.productAdded.emit(this.productBasket);
-    // console.log(this.productBasket);
+    this.productListAdded.emit(this.productBasket);
+    this.productAdded.emit(productToCheckout);
+  }
+
+  addPromotion(promotionToCheckout: Promotion[]) {
+    this.promotions.emit(promotionToCheckout);
   }
 
 }

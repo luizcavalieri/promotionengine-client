@@ -1,51 +1,35 @@
 
 
 <main class="component-container" *ngIf="!productDetail">
-
   <a *ngFor="let product of products" >
   <!--<a *ngFor="let product of products" >-->
-
     <mat-card  (click)="addProductCheckout(product)">
 
       <div class="image-container">
-
         <img [appLazySrc]="urlBE + product.image"
              lazySrcVisible="visible"
              class=""
              alt="{{ product.description}}"/>
-
       </div>
 
-
       <div class="product-info-container">
-
         <mat-card-title>
-
           <h2>
-
             {{product.name}}
-
           </h2>
-
         </mat-card-title>
 
         <mat-card-subtitle>
-
           <h3>
-
             {{product.description}}
-
           </h3>
-
         </mat-card-subtitle>
 
         <h3 class="price">
-
           AU${{product.price | number:'1.2-2' }}
-
         </h3>
-      </div>
 
+      </div>
     </mat-card>
 
   </a>

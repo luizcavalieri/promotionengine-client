@@ -1,0 +1,13 @@
+
+<header>
+
+  <h1>
+    Point of Sale
+  </h1>
+
+</header>
+
+<app-product-list (productToCheckout)="addProduct($event)" (promotionToCheckout)="addPromotion($event)">
+</app-product-list>
+
+<app-product-checkout [productListCheckout]="productBasket"></app-product-checkout>

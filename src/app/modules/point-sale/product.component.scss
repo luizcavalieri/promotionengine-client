@@ -26,7 +26,7 @@ app-product{
 
   }
 
-  app-product-detail{
+  app-product-checkout{
     flex-basis: 96%;
     order: 1;
 
@@ -36,7 +36,7 @@ app-product{
     }
   }
 
-  app-product-detail,
+  app-product-checkout,
   app-product-list{
     min-width: 310px;
     margin-right: 2%;

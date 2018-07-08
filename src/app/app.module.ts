@@ -19,7 +19,7 @@ import { ProductService } from './services/product.service';
 import { PromotionService } from './services/promotion.service';
 import { MessageService } from './services/message.service';
 import { SharedModuleModule } from './shared-module/shared-module.module';
-import { AppProductModule } from './modules/checkout/product.module';
+import { AppProductModule } from './modules/point-sale/product.module';
 import { LazyModule } from './directives/lazy-load/lazy.module';
 import {ServiceUtils} from './services/service-utils';
 

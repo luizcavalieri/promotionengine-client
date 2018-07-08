@@ -7,7 +7,7 @@ jobs:
   build:
     machine: true
     steps:
-       - checkout
+       - point-sale
        # start proprietary DB using private Docker image
        # with credentials stored in the UI
        - run: |
