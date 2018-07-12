@@ -2,67 +2,93 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
+      "name": "SALAMI",
       "description": "Description product 1",
-      "price": 10.75,
-      "image": "../assets/images/product1.png"
+      "price": 20.75,
+      "image": "../assets/images/product1.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 2,
-      "name": "Product 2",
-      "description": "Description product 2",
-      "price": 25.50,
+      "description": "TOILET PAPER",
+      "price": 30,
+      "barcode": "444444444444",
+      "action": "SALE",
+      "type": "UNIT",
+      "name": "TOILET PAPER",
       "image": "../assets/images/product2.png"
     },
     {
       "id": 3,
-      "name": "Product 3",
-      "description": "Description product 3",
+      "name": "PALMEIRAS SHIRT",
+      "description": "PALMEIRAS SHIRT",
       "price": 5.20,
-      "image": "../assets/images/product3.png"
+      "image": "../assets/images/product3.png",
+      "action": "SALE",
+      "barcode": "333333333333",
+      "type": "UNIT"
     },
     {
       "id": 4,
       "name": "Product 4",
       "description": "Description product 4",
       "price": 28.15,
-      "image": "../assets/images/product4.png"
+      "image": "../assets/images/product4.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 5,
       "name": "Product 5",
       "description": "Description product 5",
       "price": 12.00,
-      "image": "../assets/images/product5.png"
+      "image": "../assets/images/product5.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 6,
       "name": "Product 6",
       "description": "Description product 6",
       "price": 9.90,
-      "image": "../assets/images/product6.png"
+      "image": "../assets/images/product6.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 7,
       "name": "Product 7",
       "description": "Description product 7",
       "price": 15.40,
-      "image": "../assets/images/product7.png"
+      "image": "../assets/images/product7.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 8,
       "name": "Product 8",
       "description": "Description product 8",
       "price": 7.45,
-      "image": "../assets/images/product8.png"
+      "image": "../assets/images/product8.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     },
     {
       "id": 9,
       "name": "Product 9",
       "description": "Description product 9",
       "price": 8.25,
-      "image": "../assets/images/product9.png"
+      "image": "../assets/images/product9.png",
+      "action": "SALE",
+      "barcode": "444444444444",
+      "type": "UNIT"
     }
   ]
-
 }

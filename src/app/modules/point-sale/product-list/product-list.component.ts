@@ -3,7 +3,7 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {configs} from '../../../../util';
 import {PromotionService} from '../../../services/promotion.service';
-import {Promotion} from '../../../models/promotion';
+import {Benefits} from '../../../models/benefits';
 
 @Component({
              selector: 'app-product-list',
@@ -15,9 +15,9 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   urlBE: string;
   productDetail: Product;
   promotionToken: String;
-  promotionObj: Promotion [];
+  promotionObj: Benefits [];
   @Output() productToCheckout = new EventEmitter<Product>();
-  @Output() promotionToCheckout = new EventEmitter<Promotion[]>();
+  @Output() promotionToCheckout = new EventEmitter<Benefits[]>();
 
   constructor(
     private productService: ProductService,
@@ -59,7 +59,7 @@ export class ProductListComponent implements OnInit, AfterContentInit {
     console.log('this.promotionToken', this.promotionToken);
     return this.promotionService.putPromotion(this.promotionToken, product)
                .subscribe(
-                 promotion => console.log('Promotion PUT', product),
+                 promotion => console.log('Benefits PUT', product),
                  (err) => console.error(err),
                  () => {
                    this.promotionService.getPromotion(this.promotionToken)

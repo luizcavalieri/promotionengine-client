@@ -1,6 +1,6 @@
 # Promotion Engine FE
 
-This is a project to proof concept of a Promotion Engine and was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
+This is a project to proof concept of a Benefits Engine and was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
 ## Development server
 

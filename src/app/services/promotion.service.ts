@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Promotion} from '../models/promotion';
+import {Benefits} from '../models/benefits';
 import {Product} from '../models/product';
 import {MessageService} from './message.service';
 import {configs} from '../../util';
@@ -81,9 +81,21 @@ export class PromotionService {
                );
   }
 
-  putPromotion(promotionToken, product): Observable<Promotion> {
+  putPromotion(promotionToken, product): Observable<Benefits> {
     this.apiUrl = promotionUrl + promotionToken;
-    return this.http.put<Promotion>(this.apiUrl, bodyBeerNuts, this.serviceUtils.httpOptionsJSON)
+    const productBody = {
+      'quantity': 1,
+      'item': {
+        id: product.id,
+        description: product.description,
+        price: product.price,
+        barcode: product.barcode,
+        action: product.action,
+        type: product.type
+      }
+    };
+    console.log(productBody);
+    return this.http.put<Benefits>(this.apiUrl, productBody, this.serviceUtils.httpOptionsJSON)
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
@@ -92,7 +104,7 @@ export class PromotionService {
                        )
                  ),
                  catchError(
-                   this.serviceUtils.handleError<Promotion>(
+                   this.serviceUtils.handleError<Benefits>(
                      SERVICE,
                      `putPromotion`
                    )
@@ -100,9 +112,9 @@ export class PromotionService {
                );
   }
 
-  getPromotion(promotionToken): Observable<Promotion[]> {
+  getPromotion(promotionToken): Observable<Benefits[]> {
     this.apiUrl = promotionUrl + promotionToken;
-    return this.http.get<Promotion[]>(this.apiUrl)
+    return this.http.get<Benefits[]>(this.apiUrl)
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
@@ -110,7 +122,7 @@ export class PromotionService {
                        )
                  ),
                  catchError(
-                   this.serviceUtils.handleError<Promotion[]>(
+                   this.serviceUtils.handleError<Benefits[]>(
                      SERVICE,
                      `getPromotion`
                    )

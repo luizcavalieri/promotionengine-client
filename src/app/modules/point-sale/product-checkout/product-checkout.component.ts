@@ -5,7 +5,8 @@ import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 import {PromotionService} from '../../../services/promotion.service';
-import {Promotion} from '../../../models/promotion';
+import {Benefits, EBenefit} from '../../../models/benefits';
+import {ProductCheckout} from '../../../models/product-checkout';
 
 @Component({
              selector: 'app-product-checkout',
@@ -13,11 +14,12 @@ import {Promotion} from '../../../models/promotion';
              styleUrls: ['./product-checkout.component.scss']
            })
 export class ProductCheckoutComponent implements OnInit, DoCheck {
-  @Input() productListCheckout: Product[];
+  @Input() promotionListCheckout: Benefits[];
+  @Input() productListCheckout: ProductCheckout[];
   @Input() productToCheckout: Product;
   urlBE: string;
   displayedColumns = ['name', 'description', 'quantity', 'price'];
-  productArrayCount: Product[] = [];
+  productArrayCount: ProductCheckout[] = [];
   dataSource = new MatTableDataSource(this.productArrayCount);
   differ: any;
   grandTotal: number = 0;
@@ -25,7 +27,8 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
   total: number = 0;
   quantity: number = 0;
   promotionToken: String;
-  promotionObj: Promotion;
+  promotionObj: Benefits;
+  benefit = EBenefit;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,42 +47,69 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.addProductToCheckout();
     this.getTotals();
+    this.checkPromotion();
   }
 
   addProductToCheckout(): void {
     this.productArrayCount = [];
     let previousItem: Product;
-    const productArrSorted =
-      this.productListCheckout
-          .sort((a: any, b: any) => {
-            return a.id - b.id;
-          });
+    const productArrSorted = this.productListCheckout.sort((a: any, b: any) => a.id - b.id);
 
     productArrSorted.map(item => {
       if (previousItem !== undefined) {
         if (item.id === previousItem.id) {
           this.productArrayCount.pop();
           item.quantity++;
-        } else {
-          item.quantity = 1;
-        }
-      } else {
-        item.quantity = 1;
-      }
+        } else { item.quantity = 1; }
+      } else { item.quantity = 1; }
       this.productArrayCount.push(item);
       previousItem = item;
     });
     this.dataSource = new MatTableDataSource(this.productArrayCount);
+
+  }
+
+  checkPromotion(product?: ProductCheckout): void {
+    if (this.promotionListCheckout && this.promotionListCheckout.length) {
+      console.log(this.promotionListCheckout);
+      this.promotionListCheckout.map(promotion => {
+        if (promotion.AmountOffCart) {
+          console.log('AmountOffCart', promotion.AmountOffCart.amountOff);
+        }
+        if (promotion.AmountOffItem) {
+          console.log('AmountOffItem', promotion.AmountOffItem.amountOff);
+        }
+        if (promotion.PercentageOffCart) {
+          console.log('PercentageOffCart', promotion.PercentageOffCart.percentage);
+        }
+        if (promotion.PercentageOffItem) {
+          console.log('PercentageOffItem', promotion.PercentageOffItem.percentage);
+        }
+        if (promotion.Gift) {
+          console.log('Gift', promotion.Gift);
+        }
+        if (promotion.ItemFree) {
+          console.log('ItemFree', promotion.ItemFree);
+        }
+        if (promotion.FixedPrice) {
+          console.log('FixedPrice', promotion.FixedPrice.newPrice);
+        }
+        if (promotion.Coupon) {
+          console.log('Coupon', promotion.Coupon);
+        }
+        if (promotion.Point) {
+          console.log('Point', promotion.Point.points);
+        }
+      });
+    }
   }
 
   getTotals(): void {
     this.total = 0;
     this.quantity = 0;
     for (const item of this.productArrayCount) {
-     this.total = this.total + (item.quantity * item.price);
-     this.quantity = this.quantity + item.quantity;
+      this.total = this.total + (item.quantity * item.price);
+      this.quantity = this.quantity + item.quantity;
     }
   }
-
-
 }
