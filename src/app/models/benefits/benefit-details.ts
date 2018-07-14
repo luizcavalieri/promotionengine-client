@@ -1,4 +1,4 @@
-import {EBenefitType} from '../benefits';
+import {EBenefitType} from '../EBenefitType';
 
 export class BenefitDetail {
   quantity: number;

@@ -67,8 +67,8 @@ export class ServiceUtils {
   }
 
   /** Log a ProductService message with the MessageService */
-  public log(service: string, message: string) {
-    this.messageService.add(service + ': ' + message);
+  public log(service: string, message: string, object?: any) {
+    this.messageService.add(service + ': ' + message, object);
   }
 
   /**

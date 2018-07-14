@@ -15,15 +15,13 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   urlBE: string;
   productDetail: Product;
   promotionToken: String;
-  promotionObj: Benefits [];
   @Output() productToCheckout = new EventEmitter<Product>();
   @Output() promotionToCheckout = new EventEmitter<Benefits[]>();
 
   constructor(
     private productService: ProductService,
     private promotionService: PromotionService
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.getProducts();
@@ -31,22 +29,16 @@ export class ProductListComponent implements OnInit, AfterContentInit {
     // getting promtion engine token.
     this.promotionService.postPromotionToken()
         .subscribe(token => {
-          console.log('promotion token', token);
           this.promotionToken = token;
         });
   }
 
-  ngAfterContentInit() {
-  }
+  ngAfterContentInit() { }
 
   getProducts(): void {
     this.productService.getProducts()
         .subscribe(
           products => this.products = products);
-  }
-
-  getProductDetail(product): void {
-    this.productDetail = product;
   }
 
   addProductCheckout(product: Product) {
@@ -56,10 +48,9 @@ export class ProductListComponent implements OnInit, AfterContentInit {
   }
 
   getPromotions(product: Product) {
-    console.log('this.promotionToken', this.promotionToken);
     return this.promotionService.putPromotion(this.promotionToken, product)
                .subscribe(
-                 promotion => console.log('Benefits PUT', product),
+                 _ => console.log('product', product),
                  (err) => console.error(err),
                  () => {
                    this.promotionService.getPromotion(this.promotionToken)

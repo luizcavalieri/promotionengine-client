@@ -7,7 +7,7 @@
       "price": 20.75,
       "image": "../assets/images/product1.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "121212121212",
       "type": "UNIT"
     },
     {
@@ -24,7 +24,7 @@
       "id": 3,
       "name": "PALMEIRAS SHIRT",
       "description": "PALMEIRAS SHIRT",
-      "price": 5.20,
+      "price": 150.20,
       "image": "../assets/images/product3.png",
       "action": "SALE",
       "barcode": "333333333333",
@@ -37,7 +37,7 @@
       "price": 28.15,
       "image": "../assets/images/product4.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "1111111",
       "type": "UNIT"
     },
     {
@@ -47,7 +47,7 @@
       "price": 12.00,
       "image": "../assets/images/product5.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "22222222",
       "type": "UNIT"
     },
     {
@@ -57,7 +57,7 @@
       "price": 9.90,
       "image": "../assets/images/product6.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "5555555",
       "type": "UNIT"
     },
     {
@@ -67,7 +67,7 @@
       "price": 15.40,
       "image": "../assets/images/product7.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "66666666",
       "type": "UNIT"
     },
     {
@@ -77,7 +77,7 @@
       "price": 7.45,
       "image": "../assets/images/product8.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "77777777777",
       "type": "UNIT"
     },
     {
@@ -87,7 +87,7 @@
       "price": 8.25,
       "image": "../assets/images/product9.png",
       "action": "SALE",
-      "barcode": "444444444444",
+      "barcode": "9999999",
       "type": "UNIT"
     }
   ]

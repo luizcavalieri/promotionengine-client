@@ -5,7 +5,8 @@ import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 import {PromotionService} from '../../../services/promotion.service';
-import {Benefits, EBenefit} from '../../../models/benefits';
+import {Benefits} from '../../../models/benefits';
+import {EBenefit} from '../../../models/EBenefit';
 import {ProductCheckout} from '../../../models/product-checkout';
 
 @Component({
@@ -22,10 +23,10 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
   productArrayCount: ProductCheckout[] = [];
   dataSource = new MatTableDataSource(this.productArrayCount);
   differ: any;
-  grandTotal: number = 0;
-  discount: number = 0;
-  total: number = 0;
-  quantity: number = 0;
+  grandTotal: number;
+  discount: number;
+  total: number;
+  quantity: number;
   promotionToken: String;
   promotionObj: Benefits;
   benefit = EBenefit;
@@ -37,6 +38,10 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
     public promotionService: PromotionService,
     private differs: IterableDiffers) {
     this.differ = differs.find([]).create(null);
+    this.grandTotal = 0;
+    this.total = 0;
+    this.quantity = 0;
+    this.discount = 0;
   }
 
   ngOnInit(): void {
@@ -45,9 +50,10 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    this.addProductToCheckout();
-    this.getTotals();
-    this.checkPromotion();
+    this.checkPromotion();+
+      console.log('ProductToChekcout', this.productToCheckout);
+    if (this.promotionListCheckout) { console.log(this.promotionListCheckout); }
+    if (this.productToCheckout) { console.log('ProductToChekcout', this.productToCheckout); }
   }
 
   addProductToCheckout(): void {
@@ -66,41 +72,51 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
       previousItem = item;
     });
     this.dataSource = new MatTableDataSource(this.productArrayCount);
-
   }
 
   checkPromotion(product?: ProductCheckout): void {
     if (this.promotionListCheckout && this.promotionListCheckout.length) {
-      console.log(this.promotionListCheckout);
       this.promotionListCheckout.map(promotion => {
         if (promotion.AmountOffCart) {
-          console.log('AmountOffCart', promotion.AmountOffCart.amountOff);
+          // console.log('AmountOffCart', promotion.AmountOffCart.amountOff);
+          // apply promotion to total
         }
         if (promotion.AmountOffItem) {
-          console.log('AmountOffItem', promotion.AmountOffItem.amountOff);
+          // console.log('AmountOffItem', promotion.AmountOffItem.amountOff);
+        //  apply promotion to product price
         }
         if (promotion.PercentageOffCart) {
-          console.log('PercentageOffCart', promotion.PercentageOffCart.percentage);
+          // console.log('PercentageOffCart', promotion.PercentageOffCart.percentage);
+          // apply percentage to cart
         }
         if (promotion.PercentageOffItem) {
-          console.log('PercentageOffItem', promotion.PercentageOffItem.percentage);
+          // console.log('PercentageOffItem', promotion.PercentageOffItem.percentage);
+        //  apply percentage to procuct price
         }
         if (promotion.Gift) {
-          console.log('Gift', promotion.Gift);
+          // console.log('Gift', promotion.Gift);
+        //  show message for gift
         }
         if (promotion.ItemFree) {
-          console.log('ItemFree', promotion.ItemFree);
+          // console.log('ItemFree', promotion.ItemFree);
+        // make product price to zero
         }
         if (promotion.FixedPrice) {
-          console.log('FixedPrice', promotion.FixedPrice.newPrice);
+          // console.log('FixedPrice', promotion.FixedPrice.newPrice);
+        //  change price of product
         }
         if (promotion.Coupon) {
-          console.log('Coupon', promotion.Coupon);
+          // console.log('Coupon', promotion.Coupon);
+        //  if coupon added check the discount related to that
         }
         if (promotion.Point) {
-          console.log('Point', promotion.Point.points);
+          // console.log('Point', promotion.Point.points);
+        // count loyalty points
         }
       });
+
+      this.addProductToCheckout();
+      this.getTotals();
     }
   }
 

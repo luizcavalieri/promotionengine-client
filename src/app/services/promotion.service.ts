@@ -94,13 +94,12 @@ export class PromotionService {
         type: product.type
       }
     };
-    console.log(productBody);
     return this.http.put<Benefits>(this.apiUrl, productBody, this.serviceUtils.httpOptionsJSON)
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
                          SERVICE,
-                         `fetched putPromotion ${_}`
+                         `fetched putPromotion`
                        )
                  ),
                  catchError(
@@ -118,7 +117,8 @@ export class PromotionService {
                .pipe(
                  tap(_ =>
                        this.serviceUtils.log(
-                         SERVICE, `fetched getPromotion ${_}`
+                         SERVICE, `fetched getPromotion`,
+                         _
                        )
                  ),
                  catchError(

@@ -7,9 +7,9 @@ export class MessageService {
 
   messages: string[] = [];
 
-  add(message: string) {
+  add(message: string, object?: any) {
     this.messages.push(message);
-    console.log(message);
+    !object ? console.log(message) : console.log(message, object);
   }
 
   clear() {

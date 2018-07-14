@@ -15,9 +15,11 @@ export class ProductComponent implements OnInit {
   @Output() promotions = new EventEmitter<Benefits[]>() ;
   productBasket: Product[];
   promotionList: Benefits[];
+  title: string;
 
   constructor() {
     this.productBasket = [];
+    this.title = 'Point of Sale Test fgf';
   }
 
   ngOnInit(): void { }
