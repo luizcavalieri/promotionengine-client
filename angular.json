@@ -47,6 +47,12 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "hmr": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.hmr.ts"
+              }]
             }
           }
         },
@@ -58,6 +64,10 @@
           "configurations": {
             "production": {
               "browserTarget": "promotion-engine-client:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "promotion-engine-client:build:hmr"
             }
           }
         },

@@ -19,7 +19,7 @@ export class ProductComponent implements OnInit {
 
   constructor() {
     this.productBasket = [];
-    this.title = 'Point of Sale Test fgf';
+    this.title = 'Point of Sale Test 123';
   }
 
   ngOnInit(): void { }
