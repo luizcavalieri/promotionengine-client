@@ -50,73 +50,80 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    this.checkPromotion();+
-      console.log('ProductToChekcout', this.productToCheckout);
-    if (this.promotionListCheckout) { console.log(this.promotionListCheckout); }
-    if (this.productToCheckout) { console.log('ProductToChekcout', this.productToCheckout); }
+    this.addProductToCheckout();
   }
 
   addProductToCheckout(): void {
     this.productArrayCount = [];
     let previousItem: Product;
     const productArrSorted = this.productListCheckout.sort((a: any, b: any) => a.id - b.id);
-
     productArrSorted.map(item => {
       if (previousItem !== undefined) {
         if (item.id === previousItem.id) {
           this.productArrayCount.pop();
           item.quantity++;
-        } else { item.quantity = 1; }
-      } else { item.quantity = 1; }
+        } else {
+          item.quantity = 1;
+        }
+      } else {
+        item.quantity = 1;
+      }
       this.productArrayCount.push(item);
       previousItem = item;
     });
+    this.getTotals();
     this.dataSource = new MatTableDataSource(this.productArrayCount);
   }
 
-  checkPromotion(product?: ProductCheckout): void {
+  checkPromotion(product?: ProductCheckout) {
     if (this.promotionListCheckout && this.promotionListCheckout.length) {
-      this.promotionListCheckout.map(promotion => {
+      let isPromotionAlreadyApplied = false;
+      this.promotionListCheckout.forEach(promotion => {
         if (promotion.AmountOffCart) {
-          // console.log('AmountOffCart', promotion.AmountOffCart.amountOff);
           // apply promotion to total
         }
         if (promotion.AmountOffItem) {
-          // console.log('AmountOffItem', promotion.AmountOffItem.amountOff);
-        //  apply promotion to product price
+          //  apply promotion to product price
+          if (product.barcode === promotion.AmountOffItem.itemKey && !isPromotionAlreadyApplied) {
+            product.price = product.price - promotion.AmountOffItem.amountOff;
+            isPromotionAlreadyApplied = true;
+          }
         }
         if (promotion.PercentageOffCart) {
-          // console.log('PercentageOffCart', promotion.PercentageOffCart.percentage);
           // apply percentage to cart
         }
         if (promotion.PercentageOffItem) {
-          // console.log('PercentageOffItem', promotion.PercentageOffItem.percentage);
-        //  apply percentage to procuct price
+          //  apply percentage to procuct price
+          if (product.barcode === promotion.PercentageOffItem.itemKey && !isPromotionAlreadyApplied) {
+            product.price = product.price - (product.price * promotion.PercentageOffItem.percentage);
+            isPromotionAlreadyApplied = true;
+          }
         }
         if (promotion.Gift) {
-          // console.log('Gift', promotion.Gift);
-        //  show message for gift
+          //  show message for gift
         }
         if (promotion.ItemFree) {
-          // console.log('ItemFree', promotion.ItemFree);
-        // make product price to zero
+          // make product price to zero
+          if (product.barcode === promotion.ItemFree.itemKey && !isPromotionAlreadyApplied) {
+            product.price = 0;
+            isPromotionAlreadyApplied = true;
+          }
         }
         if (promotion.FixedPrice) {
-          // console.log('FixedPrice', promotion.FixedPrice.newPrice);
-        //  change price of product
+          //  change price of product
+          if (product.barcode === promotion.FixedPrice.itemKey && !isPromotionAlreadyApplied) {
+            product.price = promotion.FixedPrice.newPrice;
+            isPromotionAlreadyApplied = true;
+          }
         }
         if (promotion.Coupon) {
-          // console.log('Coupon', promotion.Coupon);
-        //  if coupon added check the discount related to that
+          //  if coupon added check the discount related to that
         }
         if (promotion.Point) {
-          // console.log('Point', promotion.Point.points);
-        // count loyalty points
+          // count loyalty points
         }
       });
-
-      this.addProductToCheckout();
-      this.getTotals();
+      return product;
     }
   }
 
@@ -124,6 +131,8 @@ export class ProductCheckoutComponent implements OnInit, DoCheck {
     this.total = 0;
     this.quantity = 0;
     for (const item of this.productArrayCount) {
+      const product = item;
+      const productDiscounted = this.checkPromotion(product);
       this.total = this.total + (item.quantity * item.price);
       this.quantity = this.quantity + item.quantity;
     }

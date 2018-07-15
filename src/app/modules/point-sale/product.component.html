@@ -7,8 +7,13 @@
 
 </header>
 
-<app-product-list (productToCheckout)="addProduct($event)" (promotionToCheckout)="addPromotion($event)">
+<app-product-list
+  (productToCheckout)="addProduct($event)"
+  (promotionToCheckout)="addPromotion($event)">
 </app-product-list>
 
-<app-product-checkout [productListCheckout]="productBasket" [promotionListCheckout]="promotionList">
+<app-product-checkout
+  [productListCheckout]="productBasket"
+  [promotionListCheckout]="promotionList"
+  [productToCheckout]="productAdded">
 </app-product-checkout>
