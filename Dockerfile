@@ -6,7 +6,7 @@ RUN npm install
 COPY ./ /app/
 ARG env=production
 RUN npm install -g json-server
-RUN json-server --watch product.json --port 8085
+#RUN json-server --watch product.json --port 8085
 RUN npm run build -- --prod --configuration $env
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
